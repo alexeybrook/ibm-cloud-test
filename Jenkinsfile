@@ -19,7 +19,7 @@ podTemplate(label: 'mypod',
                 NAMESPACE=`cat /var/run/configs/registry-config/namespace`
                 REGISTRY=`cat /var/run/configs/registry-config/registry`
 
-                docker build -t \${REGISTRY}/\${NAMESPACE}/bluecompute-ce-web:${env.BUILD_NUMBER} .
+                docker build -t \${REGISTRY}/\${NAMESPACE}/alexey-ce-web:${env.BUILD_NUMBER} .
                 """
             }
             stage('Push Docker Image to Registry') {
@@ -56,7 +56,7 @@ podTemplate(label: 'mypod',
                 fi
 
                 # Update Deployment
-                kubectl set image \${DEPLOYMENT} web=\${REGISTRY}/\${NAMESPACE}/bluecompute-ce-web:${env.BUILD_NUMBER}
+                kubectl set image \${DEPLOYMENT} web=\${REGISTRY}/\${NAMESPACE}/alexey-ce-web:${env.BUILD_NUMBER}
                 kubectl rollout status \${DEPLOYMENT}
                 """
             }
